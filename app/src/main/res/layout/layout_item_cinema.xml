@@ -11,7 +11,7 @@
         android:layout_width="150dp"
         android:layout_height="65dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/galaxy_huynh_tan_phat" />
+        android:src="@drawable/galaxy_kinh_duong_vuong" />
 
     <LinearLayout
         android:layout_width="wrap_content"
