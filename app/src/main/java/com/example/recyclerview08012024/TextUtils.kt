@@ -8,12 +8,6 @@ import kotlin.math.round
 object TextUtils {
 
     fun formatDistance(distance: Int): String {
-        // distance < 1000 => 999 m
-        // distance == 1000 => 1km
-        // distance > 1000 <===> 1110 / 1000 => 1.1km
-        // distance > 1000 <===> 1150 / 1000 => 1.2km
-
-
         return if (distance < 1000) {
             "$distance m"
         } else {

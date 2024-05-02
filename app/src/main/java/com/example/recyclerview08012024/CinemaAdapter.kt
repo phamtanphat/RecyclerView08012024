@@ -25,7 +25,7 @@ class CinemaAdapter(
             txtName.text = cinema.name
             txtAddress.text = cinema.address
             txtPhone.text = cinema.phone
-//            txtDistance.text = cinema.distance
+            txtDistance.text = TextUtils.formatDistance(cinema.distance)
         }
     }
 
