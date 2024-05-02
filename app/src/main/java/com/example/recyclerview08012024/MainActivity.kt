@@ -12,7 +12,7 @@ class MainActivity : AppCompatActivity() {
 
     private var recyclerView: RecyclerView? = null
     private var cinemaAdapter: CinemaAdapter? = null
-
+    private var listCinema: List<Cinema>? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -25,7 +25,8 @@ class MainActivity : AppCompatActivity() {
 
 
         recyclerView = findViewById(R.id.recyclerview_cinema)
-
-        var cinema = Cinema.text
+        listCinema = Cinema.getDataMock()
+        cinemaAdapter = CinemaAdapter(this, listCinema ?: emptyList())
+        recyclerView?.adapter = cinemaAdapter
     }
 }
