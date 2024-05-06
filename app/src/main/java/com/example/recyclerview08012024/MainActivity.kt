@@ -23,10 +23,10 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-
         recyclerView = findViewById(R.id.recyclerview_cinema)
         listCinema = Cinema.getDataMock()
         cinemaAdapter = CinemaAdapter(this, listCinema ?: emptyList())
         recyclerView?.adapter = cinemaAdapter
+
     }
 }
