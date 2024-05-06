@@ -1,7 +1,6 @@
 package com.example.recyclerview08012024
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,8 +10,10 @@ import androidx.recyclerview.widget.RecyclerView
 
 class CinemaAdapter(
     private var context: Context,
-    private var listCinema: List<Cinema>
+    private var listCinema: MutableList<Cinema>
 ) : RecyclerView.Adapter<CinemaAdapter.CinemaViewHolder>() {
+
+    private var onItemClickListener: OnItemClickListener? = null
 
     inner class CinemaViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val img = view.findViewById<ImageView>(R.id.image_view_cinema)
@@ -23,9 +24,8 @@ class CinemaAdapter(
 
         init {
             view.setOnClickListener {
-                Log.d("pphat", listCinema.getOrNull(adapterPosition)?.name.toString())
+                onItemClickListener?.onClick(adapterPosition)
             }
-
         }
 
         fun bind(cinema: Cinema) {
@@ -47,5 +47,9 @@ class CinemaAdapter(
 
     override fun onBindViewHolder(holder: CinemaViewHolder, position: Int) {
         holder.bind(listCinema[position])
+    }
+
+    fun setOnItemClickListener(onItemClickListener: OnItemClickListener) {
+        this.onItemClickListener = onItemClickListener
     }
 }

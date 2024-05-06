@@ -2,17 +2,19 @@ package com.example.recyclerview08012024
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.RecyclerView
+import java.text.FieldPosition
 
 class MainActivity : AppCompatActivity() {
 
     private var recyclerView: RecyclerView? = null
     private var cinemaAdapter: CinemaAdapter? = null
-    private var listCinema: List<Cinema>? = null
+    private var listCinema: MutableList<Cinema>? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -24,9 +26,18 @@ class MainActivity : AppCompatActivity() {
         }
 
         recyclerView = findViewById(R.id.recyclerview_cinema)
-        listCinema = Cinema.getDataMock()
-        cinemaAdapter = CinemaAdapter(this, listCinema ?: emptyList())
+        listCinema = Cinema.getDataMock().toMutableList()
+        cinemaAdapter = CinemaAdapter(this, listCinema ?: mutableListOf())
         recyclerView?.adapter = cinemaAdapter
 
+        cinemaAdapter?.setOnItemClickListener(object : OnItemClickListener {
+            override fun onClick(position: Int) {
+                Toast.makeText(
+                    this@MainActivity,
+                    listCinema?.getOrNull(position)?.name.toString(),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        })
     }
 }
